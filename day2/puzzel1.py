@@ -21,9 +21,11 @@ for i in range(0, len(memory), 4):
     print("Op Code = {}".format(op_code))
 
     if op_code == 1 or op_code == 2:
-        operand_1 = memory[i + 1]
-        operand_2 = memory[i + 2]
+        operand_1_loc = memory[i + 1]
+        operand_2_loc = memory[i + 2]
         output_location = memory[i + 3]
+        operand_1 = memory[operand_1_loc]
+        operand_2 = memory[operand_2_loc]
         print("op1 = {}".format(operand_1))
         print("op2 = {}".format(operand_2))
         print("output_loc = {}".format(output_location))
