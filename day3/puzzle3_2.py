@@ -1,4 +1,4 @@
-from day3.puzzel3_1 import generate_list_of_instructions, generate_list_of_points, find_intersections
+from day3.puzzle3_1 import generate_list_of_instructions, generate_list_of_points, find_intersections
 
 if __name__ == "__main__":
     wires = []
