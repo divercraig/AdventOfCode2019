@@ -52,12 +52,47 @@ def calculate() -> int:
             i += 4
         if op_code == 3:
             print('Input:')
-            write_value(1, i + 1, instruction[1]) # hard coded value of 1 rather than input
+            write_value(5, i + 1, instruction[1]) # hard coded value of 5 rather than input
             i += 2
 
         if op_code == 4:
             print('Output: {}'.format(read_value(i + 1, instruction[1])))
             i += 2
+
+        if op_code == 5:
+            operand_1 = read_value(i + 1, instruction[1])
+            operand_2 = read_value(i + 2, instruction[2])
+            if operand_1 is not 0:
+                i = operand_2
+            else:
+                i += 3
+
+        if op_code == 6:
+            operand_1 = read_value(i + 1, instruction[1])
+            operand_2 = read_value(i + 2, instruction[2])
+            if operand_1 is 0:
+                i = operand_2
+            else:
+                i += 3
+
+        if op_code == 7:
+            operand_1 = read_value(i + 1, instruction[1])
+            operand_2 = read_value(i + 2, instruction[2])
+            if operand_1 < operand_2:
+                write_value(1, i + 3, instruction[3])
+            else:
+                write_value(0, i + 3, instruction[3])
+            i += 4
+
+        if op_code == 8:
+            operand_1 = read_value(i + 1, instruction[1])
+            operand_2 = read_value(i + 2, instruction[2])
+            if operand_1 == operand_2:
+                write_value(1, i + 3, instruction[3])
+            else:
+                write_value(0, i + 3, instruction[3])
+            i += 4
+
 
         if op_code == 99:
             # halt
