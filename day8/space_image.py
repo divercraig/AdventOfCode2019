@@ -27,7 +27,7 @@ class SpaceImage:
                 y = 0
                 layer += 1
 
-    def compact(self):
+    def compact(self, negative=False):
         output = numpy.empty([self.height, self.width], dtype=str)
 
         for x in range(self.width):
@@ -35,15 +35,15 @@ class SpaceImage:
                 for layer in range(self.number_of_layers):
                     pixel = self.layers[layer][y][x]
                     if pixel == 0:
-                        output[y][x] = ' '
+                        output[y][x] = '*' if negative else ' '
                         break
                     if pixel == 1:
-                        output[y][x] = '*'
+                        output[y][x] = ' ' if negative else '*'
                         break
         return output
 
-    def print(self):
-        output = self.compact()
+    def print(self, negative=False):
+        output = self.compact(negative=negative)
         for row in output:
             print(''.join(row))
 
