@@ -15,7 +15,14 @@ class AsteroidMap:
     @staticmethod
     def get_angle(target, candidate):
         offset_from_candidate = (target[0] - candidate[0], candidate[1] - target[1])
+
+        ###
+        # atan2 arguments are (y, x) but we pass (x, y) because our grid has inverted y and we want the 0 degree angle
+        # to be on the y axis not the x axis
+        ###
         radians = math.atan2(offset_from_candidate[0], offset_from_candidate[1])
+
+        # Modulo turns negative radians into their positive angle
         return radians % (2 * math.pi)
 
     @staticmethod
