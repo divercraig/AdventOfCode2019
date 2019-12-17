@@ -62,3 +62,38 @@ class AsciiRobot:
             alignment_parameter = alignment_parameter + value
 
         return alignment_parameter
+
+    def traverse(self):
+        # 'L,12,R,4,R,4,R,12,R,4,L,12,R,12,R,4,L,12,R,12,R,4,L,6,L,8,L,8,R,12,R,4,L,6,L,8,L,8,L,12,R,4,R,4,L,12,R,4,R,4,R,12,R,4,L,12,R,12,R,4,L,12,R,12,R,4,L,6,L,8,L,8'
+        PLAN = 'A,B,B,C,C,A,A,B,B,C\n'
+
+        C = 'R,12,R,4,L,6,L,8,L,8\n'
+        B = 'R,12,R,4,L,12\n'
+        A = 'L,12,R,4,R,4\n'
+        VIDEO = 'n\n'
+
+        program_input = []
+
+        for char in PLAN:
+            program_input.append(ord(char))
+
+        for char in A:
+            program_input.append(ord(char))
+
+        for char in B:
+            program_input.append(ord(char))
+
+        for char in C:
+            program_input.append(ord(char))
+
+        for char in VIDEO:
+            program_input.append(ord(char))
+
+        self.brain.memory[0] = 2
+
+        halted = False
+
+        while not halted:
+            output, halted = self.brain.run(program_input=program_input)
+
+        return output
