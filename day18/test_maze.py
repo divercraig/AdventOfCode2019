@@ -16,9 +16,9 @@ def test_shortest_path_3():
     assert maze.shortest_path() == 132
 
 
-# def test_shortest_path_4():
-#     maze = Maze(file_name="test_input4.txt")
-#     assert maze.shortest_path() == 136
+def test_shortest_path_4():
+    maze = Maze(file_name="test_input4.txt")
+    assert maze.shortest_path() == 136
 
 
 def test_shortest_path_5():

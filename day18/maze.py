@@ -14,6 +14,9 @@ class State:
         else:
             return False
 
+    def __hash__(self):
+        return hash(repr(self))
+
 
 class Maze:
 
@@ -65,20 +68,19 @@ class Maze:
         if new_state in previous_states:
             return shortest
 
-        memory_key = (position, tuple(keys))
-        # if memory_key in self.memory:
-        #     return self.memory[memory_key]
-
         new_previous_states = previous_states.copy()
         new_previous_states.append(new_state)
 
         for change in [(1,0), (-1,0), (0, 1), (0, -1)]:
             next_position = (position[0] + change[0], position[1] + change[1])
             if next_position in self.empty_spaces:
-                cost = self.shortest_path(next_position, new_previous_states)
+                if (next_position, tuple(new_previous_states)) in self.memory.keys():
+                    print("Hit the optimisation")
+                    cost = self.memory[(next_position, tuple(new_previous_states))]
+                else:
+                    cost = self.shortest_path(next_position, new_previous_states)
                 if cost < shortest:
                     shortest = cost
-                    print("Shortest is now {}".format(shortest))
 
-        # self.memory[memory_key] = shortest
+        self.memory[(position, tuple(previous_states))] = shortest
         return shortest
